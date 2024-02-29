@@ -26,7 +26,7 @@ export async function CreateAnswers(req, res){
       { $push: { answersId: newAnswer._id } }
     )
 
-    ///// Call the function that sends an email to the user that asks the Question ///
+    /////  sends an email to the user that asks the Question ///
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {

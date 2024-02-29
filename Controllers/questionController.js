@@ -82,10 +82,13 @@ export async function GetSingleQuestion(req, res){
 export async function DeleteQuestion(req, res){
     try {
         const { questionId } = req?.url
+        const question = await Questions.findOne({_id: questionId})
+        const deletedQuestions = await Questions.findByIdAndDelete({ _id: { $in: question.answersId}})
         
-        
+        res.status(203).json({message: "Questions deletes successfully", deletedQuestions})
     } catch (error) {
-        
+        console.log(error)
+        res.status(500).json({message: "Internal server error", error})
     }
 }
 

@@ -44,8 +44,10 @@ export async function sendTokenTransaction(){
         )
 
         ///// Transfer tokens to the user with the voted answer ///////
-        const transactionHash = await TransferToken(connection, fromWallet, frmTokenAccount, receiversTokenAccount, highestVotedAnswer.voteCount)
-     
+        const transactionHash = await TransferToken(connection, fromWallet, frmTokenAccount, receiversTokenAccount, Number(highestVotedAnswer.voteCount))
+        
+        /////////// Adding a socket io event listener to send to the frontend for notification ////////////
+        
         console.log("This is the transaction signature ", tsx)
     } catch (error) {
         console.log("this is the error ", error)
